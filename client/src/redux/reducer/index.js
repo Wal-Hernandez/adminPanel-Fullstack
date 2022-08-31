@@ -14,7 +14,6 @@ const initialState = {
   newUser: [],
   showedUsers: [],
   paginatedResults: [],
-  currentPage: 0,
 };
 
 function rootReducer(state = initialState, action) {

@@ -22,7 +22,7 @@ export const loginUser = (user) => {
           }
           return response;
         });
-      console.log(result);
+   
       return dispatch({
         type: LOGIN_USER,
         payload: result,

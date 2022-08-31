@@ -63,7 +63,7 @@ const deleteUserById = async (id) => {
 }
 
 const updateUser = async (name, surname, age, mail, id) => {
-  console.log(name, surname, age, mail,id)
+  
     try {
         const user = await User.update({
             name, surname, age, mail

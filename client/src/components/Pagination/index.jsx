@@ -1,18 +1,16 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { paginatedUsers } from "../../redux/actions/paginatedUsers";
-/* import style from './style.module.css'; */
 
-export const Pagination= () => {
-    const dispatch = useDispatch();
-    const { allUsers } = useSelector((state) => state);
-    //Paginado Normal
+export const Pagination = () => {
+  const dispatch = useDispatch();
+  const { allUsers } = useSelector((state) => state);
+  //Paginado Normal
   const [pageCurrent, setPageCurrent] = useState(1);
 
   let itemsPerPage = 4;
   function setPagination(event) {
     setPageCurrent((pageCurrent) => Number(event.target.id));
-  
   }
   let indiceFinal = pageCurrent * itemsPerPage;
   let indiceInicial = indiceFinal - itemsPerPage;
@@ -44,7 +42,7 @@ export const Pagination= () => {
 
   let pageLimit = 10; /// porque si, vamos de 10 en 10
   //Definamos dos funciones mas, prev y next
-/*   function prevPage() {
+  /*   function prevPage() {
     setPageCurrent((pageCurrent) => {
       if (pageCurrent > 1) {
         return pageCurrent - 1;
@@ -72,30 +70,29 @@ export const Pagination= () => {
     pageLimit * (paginado + 1)
   );
 
+  let paginatedResults = allUsers.slice(indiceInicial, indiceFinal);
 
-  let paginatedResults= allUsers.slice(indiceInicial, indiceFinal)
- 
   useEffect(() => {
-    dispatch(paginatedUsers(paginatedResults))
-  }, [pageCurrent]);
+    dispatch(paginatedUsers(paginatedResults));
+  }, [pageCurrent, allUsers]);
 
   return (
     <div className="pag">
- {/*    {pageCurrent > 1 ? (
+      {/*    {pageCurrent > 1 ? (
       <span onClick={prevPage} class="flecha-nueva material-symbols-outlined">
         arrow_back_ios
       </span>
     ) : (
       ""
     )} */}
-    {sliceOfnumerosRederizados}
-  {/*   {pageCurrent < pageNumbers.length ? (
+      {sliceOfnumerosRederizados}
+      {/*   {pageCurrent < pageNumbers.length ? (
       <span onClick={nextPage} class="flecha-nueva material-symbols-outlined">
         arrow_forward_ios
       </span>
     ) : (
       ""
     )} */}
-  </div>
+    </div>
   );
-}
+};

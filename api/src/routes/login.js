@@ -13,7 +13,7 @@ router.post("/", async (req,res)=>{
            mail, password
         } = req.body; 
         let hashPassword = hash(password);
-        console.log(mail,password)
+   
       const users = await getUsers(mail,hashPassword);
         res.status(200).json(users);
      
