@@ -5,13 +5,13 @@ import {
   PAGINATE_RESULTS,
   LOGIN_USER,
   POST_USER,
-  RESET_USER
+  RESET_USER,
 } from "../types";
 
 const initialState = {
   allUsers: [],
   userLogged: [],
-  newUser:[],
+  newUser: [],
   showedUsers: [],
   paginatedResults: [],
   currentPage: 0,
@@ -23,18 +23,21 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allUsers: action.payload,
-        paginatedResults: typeof action.payload === 'string' ? action.payload : state.paginatedResults
+        paginatedResults:
+          typeof action.payload === "string"
+            ? action.payload
+            : state.paginatedResults,
       };
     case PUT_USER:
       return {
         ...state,
         form: action.payload,
       };
-      case POST_USER:
-        return{
-          ...state,
-          newUser: action.payload
-        }
+    case POST_USER:
+      return {
+        ...state,
+        newUser: action.payload,
+      };
     case DELETE_USER:
       return {
         ...state,
@@ -43,18 +46,18 @@ function rootReducer(state = initialState, action) {
     case LOGIN_USER:
       return {
         ...state,
-        userLogged: action.payload
-      }
+        userLogged: action.payload,
+      };
     case PAGINATE_RESULTS:
       return {
         ...state,
-        paginatedResults: action.payload
+        paginatedResults: action.payload,
       };
-      case RESET_USER:
-        return{
-          ...state,
-          newUser: []
-        }
+    case RESET_USER:
+      return {
+        ...state,
+        newUser: [],
+      };
     default:
       return state;
   }

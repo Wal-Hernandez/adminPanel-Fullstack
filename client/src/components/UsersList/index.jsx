@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../redux/actions/getUsers";
 import { deleteUser } from "../../redux/actions/deleteUser";
 import {resetUser} from '../../redux/actions/resetUser'
-import {paginatedUsers} from '../../redux/actions/paginatedUsers'
-
+import swal from "sweetalert";
 import { Pagination } from "../Pagination";
 import { PutForm } from "../PutForm";
 import { CreateForm } from "../CreateForm";
@@ -19,9 +18,34 @@ export const UserList = () => {
   const dispatch = useDispatch();
 
   const handleDelete = async (user) => {
-    await dispatch(deleteUser(user.id));
-    dispatch(getUsers());
-  };
+
+    await swal({
+      title: "Confirmar accion",
+      text: "El elemento se borrara",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+
+        await dispatch(deleteUser(user.id));
+        //dispatch(deleteModel(e.target.value, model));
+        
+        swal( {
+          title:"Elemento borrado con éxito",
+          icon: "success",
+        });
+  
+      } else {
+        swal( {
+          title:"El elemento no ha sido borrado",
+          icon: "success",
+        });
+      }
+    }).then( (e) =>  dispatch(getUsers()))
+    
+  }
+
   let setUpdate = (user) => {
     setPutUser(user);
     setEdit((edit) => !edit);

@@ -1,18 +1,17 @@
-import { GET_USERS,DATABASE} from '../types'
-import axios from 'axios'
+import { GET_USERS, DATABASE } from "../types";
+import axios from "axios";
 
-export const getUsers= () => {
-    return async function(dispatch) {
-        try {
-            let result = await axios.get(`${DATABASE}/users`);
-            console.log(result)
-            return dispatch({
-                type: GET_USERS ,
-                payload: result.data
-            })
+export const getUsers = () => {
+  return async function (dispatch) {
+    try {
+      let result = await axios.get(`${DATABASE}/users`);
 
-        } catch (err) {
-            console.log(err)
-        }
-    };
+      return dispatch({
+        type: GET_USERS,
+        payload: result.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 };
